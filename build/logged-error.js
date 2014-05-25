@@ -1206,8 +1206,8 @@ function HttpError(options) {
     this.log = function log() {
         if (config.logger && config.logger.error) {
             var msg = this.message;
-            if ('function' === typeof config.formatter) {
-                msg = config.formatter(this);
+            if ('function' === typeof config.format) {
+                msg = config.format(this);
             }
             config.logger.error(msg);
         }
@@ -1300,8 +1300,8 @@ codes.forEach(function (code) {
 
 var config = {
   logger: console,
-  formatter: function(error) {
-      // you can define your formatter
+  format: function(error) {
+      // you can define your format
       return error.body
   }
 };

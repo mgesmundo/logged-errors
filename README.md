@@ -29,11 +29,12 @@ For browser environment add `logged-error.js` file in build folder.
     throw new LoggedErrors.NotFoundError('some error').withStack().toArray().log();
     throw new LoggedErrors.NotFoundError('some error').withStack(true).log();
 
-    // set a new formatter and your logger (default is console)
+    // set a new format and a custom logger (default is console)
     LoggedErrors.set({
-        formatter: function (e) {
+        format: function (e) {
             return 'error occurred: ' + e.message;
-        }
+        },
+        logger: require('winston')
     });
 
 
