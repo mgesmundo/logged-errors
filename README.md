@@ -37,6 +37,16 @@ For browser environment add `logged-error.js` file in build folder.
         logger: require('winston')
     });
 
+    // change on the fly the content used for the log using the defult format
+    // use body (default)
+    throw new LoggedErrors.NotFoundError('some error').log();
+    // use message (set mode !== 'body')
+    throw new LoggedErrors.NotFoundError('some error').log('msg');
+
+    // compose a message for the error
+    throw new LoggedErrors.NotFoundError('some error with %s and %s', 'first parameter', 'second parameter').log();
+
+
 
 For other information please refer to [restify][3] documentation.
 
