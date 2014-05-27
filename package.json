@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mgesmundo/logged-error.git"
+    "url": "https://github.com/mgesmundo/logged-errors.git"
   },
-  "version": "2.8.1-1",
+  "version": "2.8.1-2",
   "description": "restify component (errors), extracted from \"restify\" with additional chainable features",
   "contributors": [
     {
@@ -94,13 +94,19 @@
       "name": "Mike Williams"
     }
   ],
+  "keywords": [
+    "error",
+    "errors",
+    "logging"
+  ],
   "author": "Marcello Gesmundo",
   "name": "logged-errors",
   "main": "./index.js",
   "browser": {
     "./index.js": "./index-browser.js"
   },
+  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mgesmundo/logged-error/issues"
+    "url": "https://github.com/mgesmundo/logged-errors/issues"
   }
 }
