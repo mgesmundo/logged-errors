@@ -1,1 +1,1 @@
-window.loggedError = require('./lib');
+window.loggedErrors = require('./lib');

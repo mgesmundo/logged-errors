@@ -4,9 +4,9 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <script src="../build/logged-error.js"></script>
+        <script src="../build/logged-errors.js"></script>
         <script>
-            var errors = window.loggedError;
+            var errors = window.loggedErrors;
             new errors.BadDigestError('some error').log();
             new errors.NoContentError('some error with %s', 'no content').log('msg');
             new errors.NotFoundError('some error').withStack().log();

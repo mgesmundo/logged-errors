@@ -1054,7 +1054,7 @@ module.exports=require(3)
 },{}],8:[function(require,module,exports){
 module.exports=require(4)
 },{"./support/isBuffer":7,"Vyf5Vp":6,"inherits":5}],9:[function(require,module,exports){
-window.loggedError = require('./lib');
+window.loggedErrors = require('./lib');
 
 },{"./lib":13}],10:[function(require,module,exports){
 function _assert(arg, type, name, stackFunc) {
