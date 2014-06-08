@@ -360,39 +360,14 @@ var objectKeys = Object.keys || function (obj) {
   return keys;
 };
 
-},{"util/":4}],2:[function(require,module,exports){
-if (typeof Object.create === 'function') {
-  // implementation from standard node.js 'util' module
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    ctor.prototype = Object.create(superCtor.prototype, {
-      constructor: {
-        value: ctor,
-        enumerable: false,
-        writable: true,
-        configurable: true
-      }
-    });
-  };
-} else {
-  // old school shim for old browsers
-  module.exports = function inherits(ctor, superCtor) {
-    ctor.super_ = superCtor
-    var TempCtor = function () {}
-    TempCtor.prototype = superCtor.prototype
-    ctor.prototype = new TempCtor()
-    ctor.prototype.constructor = ctor
-  }
-}
-
-},{}],3:[function(require,module,exports){
+},{"util/":3}],2:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],4:[function(require,module,exports){
+},{}],3:[function(require,module,exports){
 (function (process,global){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -982,9 +957,32 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this,require("Vyf5Vp"),typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":3,"Vyf5Vp":6,"inherits":2}],5:[function(require,module,exports){
-module.exports=require(2)
-},{}],6:[function(require,module,exports){
+},{"./support/isBuffer":2,"Vyf5Vp":5,"inherits":4}],4:[function(require,module,exports){
+if (typeof Object.create === 'function') {
+  // implementation from standard node.js 'util' module
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    ctor.prototype = Object.create(superCtor.prototype, {
+      constructor: {
+        value: ctor,
+        enumerable: false,
+        writable: true,
+        configurable: true
+      }
+    });
+  };
+} else {
+  // old school shim for old browsers
+  module.exports = function inherits(ctor, superCtor) {
+    ctor.super_ = superCtor
+    var TempCtor = function () {}
+    TempCtor.prototype = superCtor.prototype
+    ctor.prototype = new TempCtor()
+    ctor.prototype.constructor = ctor
+  }
+}
+
+},{}],5:[function(require,module,exports){
 // shim for using process in browser
 
 var process = module.exports = {};
@@ -1049,14 +1047,14 @@ process.chdir = function (dir) {
     throw new Error('process.chdir is not supported');
 };
 
+},{}],6:[function(require,module,exports){
+module.exports=require(2)
 },{}],7:[function(require,module,exports){
 module.exports=require(3)
-},{}],8:[function(require,module,exports){
-module.exports=require(4)
-},{"./support/isBuffer":7,"Vyf5Vp":6,"inherits":5}],9:[function(require,module,exports){
+},{"./support/isBuffer":6,"Vyf5Vp":5,"inherits":4}],8:[function(require,module,exports){
 window.loggedErrors = require('./lib');
 
-},{"./lib":13}],10:[function(require,module,exports){
+},{"./lib":12}],9:[function(require,module,exports){
 function _assert(arg, type, name, stackFunc) {
   name = name || type;
   stackFunc = stackFunc || _assert.caller;
@@ -1078,7 +1076,7 @@ function object(arg, name) {
 }
 
 exports.object = object;
-},{}],11:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 exports.STATUS_CODES = {
   100 : 'Continue',
   101 : 'Switching Protocols',
@@ -1138,7 +1136,7 @@ exports.STATUS_CODES = {
   511 : 'Network Authentication Required' // RFC 6585
 };
 
-},{}],12:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 // Copyright 2012 Mark Cavage, Inc.  All rights reserved.
 
 var http   = require('./http');
@@ -1277,7 +1275,9 @@ module.exports = {
         }
 
         return (err);
-    }
+    },
+
+    codeToErrorName: codeToErrorName
 };
 
 
@@ -1336,7 +1336,7 @@ module.exports.setConfig = function(newConfig) {
 module.exports.getConfig = function() {
     return config;
 }
-},{"./assert-plus":10,"./http":11,"object_utils":15,"util":8,"verror":16}],13:[function(require,module,exports){
+},{"./assert-plus":9,"./http":10,"object_utils":14,"util":7,"verror":15}],12:[function(require,module,exports){
 // Copyright 2012 Mark Cavage, Inc.  All rights reserved.
 
 var httpErrors = require('./http_error');
@@ -1345,7 +1345,8 @@ var restErrors = require('./rest_error');
 module.exports = {
   'set': function(config) {
     httpErrors.setConfig(config);
-  }
+  },
+  codeToErrorName: httpErrors.codeToErrorName
 };
 
 Object.keys(httpErrors).forEach(function (k) {
@@ -1357,7 +1358,7 @@ Object.keys(restErrors).forEach(function (k) {
     module.exports[k] = restErrors[k];
 });
 
-},{"./http_error":12,"./rest_error":14}],14:[function(require,module,exports){
+},{"./http_error":11,"./rest_error":13}],13:[function(require,module,exports){
 // Copyright 2012 Mark Cavage, Inc.  All rights reserved.
 
 var util = require('util');
@@ -1452,7 +1453,7 @@ Object.keys(CODES).forEach(function (k) {
             name;
 });
 
-},{"./assert-plus":10,"./http_error":12,"util":8}],15:[function(require,module,exports){
+},{"./assert-plus":9,"./http_error":11,"util":7}],14:[function(require,module,exports){
 /**
  * @class node_modules.object_utils
  * 
@@ -1592,7 +1593,7 @@ Object.keys(CODES).forEach(function (k) {
     
 }('object' === typeof module ? module.exports : (this.ObjectUtils = {})));
 
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 /*
  * verror.js: richer JavaScript errors
  */
@@ -1751,7 +1752,7 @@ WError.prototype.cause = function we_cause(c)
 	return (this.we_cause);
 };
 
-},{"assert":1,"extsprintf":17,"util":8}],17:[function(require,module,exports){
+},{"assert":1,"extsprintf":16,"util":7}],16:[function(require,module,exports){
 /*
  * extsprintf.js: extended POSIX-style sprintf
  */
@@ -1919,4 +1920,4 @@ function dumpException(ex)
 	return (ret);
 }
 
-},{"assert":1,"util":8}]},{},[9])
+},{"assert":1,"util":7}]},{},[8])
